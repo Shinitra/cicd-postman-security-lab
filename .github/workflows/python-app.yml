@@ -1,3 +1,4 @@
+```yaml
 name: CI/CD Security Lab
 
 "on":
@@ -35,3 +36,12 @@ jobs:
 
       - name: Run dependency scan
         run: python -m pip_audit -r requirements.txt
+
+      - name: Build application package
+        run: |
+          mkdir build
+          cp app.py build/
+          cp requirements.txt build/
+          cp README.md build/
+```
+
