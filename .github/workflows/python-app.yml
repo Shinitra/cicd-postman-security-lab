@@ -1,11 +1,12 @@
-```yaml
 name: CI/CD Security Lab
 
-on:
+"on":
   push:
-    branches: [ "main" ]
+    branches:
+      - main
   pull_request:
-    branches: [ "main" ]
+    branches:
+      - main
 
 jobs:
   test:
@@ -34,5 +35,3 @@ jobs:
 
       - name: Run dependency scan
         run: python -m pip_audit -r requirements.txt
-```
-
