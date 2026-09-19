@@ -1,12 +1,10 @@
 name: CI/CD Security Lab
 
-"on":
+on:
 push:
-branches:
-- main
+branches: [ "main" ]
 pull_request:
-branches:
-- main
+branches: [ "main" ]
 
 jobs:
 test:
@@ -34,14 +32,8 @@ steps:
   - name: Run Bandit SAST scan
     run: python -m bandit -r . -f txt --exclude test_app.py
 
-  - name: Run dependency scan
+    - name: Run dependency scan
     run: python -m pip_audit -r requirements.txt
 
   - name: Build application package
-    run: |
-      mkdir build
-      cp app.py build/
-      cp requirements.txt build/
-      cp README.md build/
-```
-
+    run: python -m zipfile -c build.zip app.py requirements.txt README.md
